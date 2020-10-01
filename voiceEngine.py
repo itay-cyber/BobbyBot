@@ -22,22 +22,21 @@ def tts(whatsay):
     else:
         print("Error. Input is not str")
 
-wakeword = "bobby"
-
-def recognize():
+wakewords = ["bobby", "barbie"]
+def recognize(issound):
     with sr.Microphone() as source:
-        tts("At your service. To wake me up, say bobby")
-        
         r.adjust_for_ambient_noise(source, duration=1)
-        playsound("readysound.wav")
+        if (issound == True):
+            playsound("readysound.wav")
+        else:
+            pass
+        
         audio = r.listen(source)
 
-        try:
-            text = r.recognize_google(audio, language="en-US")
-            txtArr = text.lower().split()
+        text = r.recognize_google(audio, language="en-US")
+        txtArr = text.lower().split()
+        if (txtArr != []):
+            print(txtArr)
             return txtArr
-
-            
-        except:
-            tts("Sorry. Didn't catch that. I have stupid.")
-            return ""
+        else:
+            return
