@@ -22,11 +22,13 @@ def tts(whatsay):
     else:
         print("Error. Input is not str")
 
-wakeword = "barbie"
+wakeword = "bobby"
 
 def recognize():
     with sr.Microphone() as source:
         tts("At your service. To wake me up, say bobby")
+        
+        r.adjust_for_ambient_noise(source, duration=1)
         playsound("readysound.wav")
         audio = r.listen(source)
 
@@ -39,4 +41,3 @@ def recognize():
         except:
             tts("Sorry. Didn't catch that. I have stupid.")
             return ""
-    
