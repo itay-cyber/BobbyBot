@@ -22,7 +22,7 @@ def tts(whatsay):
     else:
         print("Error. Input is not str")
 
-wakewords = ["bobby", "barbie"]
+wakewords = ["bobby", "barbie", "barbie's"]
 def recognize(issound):
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source, duration=1)
