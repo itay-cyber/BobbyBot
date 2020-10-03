@@ -4,9 +4,9 @@ import webbrowser
 import subprocess
 import os
 import time
+import getpass
+import openExe
 
-
-voiceEngine.tts("How are you doing milly!")
 
 
 #voiceEngine.recognize()
@@ -21,6 +21,8 @@ def init():
 def onVoiceEnter(txtArr):
     if (txtArr != []):
         if txtArr[0] in voiceEngine.wakewords:
+
+
             playsound("readysound.wav")
             try:
                 #simon says func
@@ -37,18 +39,55 @@ def onVoiceEnter(txtArr):
                     webbrowser.open("https://www.google.com")
                     voiceEngine.tts("Opened browser successfully")
                     onVoiceEnter(voiceEngine.recognize(False))
+
+
                 
                 #Open VSCODE function
                 elif (txtArr[1] == "open" and txtArr[2] == "visual" and txtArr[3] == "studio" and txtArr[4] == "code"):
-                    subprocess.call("C:\\Users\\Itay G\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe")
+                    voiceEngine.tts("Sorry, this might take some time. Scanning your computer for visual studio code")
+                    subprocess.call(openExe.find_file("Code.exe", "C:\\"))
+
                     voiceEngine.tts("Opened Visual Studio Code")
                     onVoiceEnter(voiceEngine.recognize(False))
+
+
+                elif (txtArr[1] == "open" and txtArr[2] == "spotify"):
+                    voiceEngine.tts("Sorry, this might take some time. Scanning your computer for Spotify")
+                    subprocess.call(openExe.find_file("Spotify.exe", "C:\\"))
+
+                    voiceEngine.tts("Opened Spotify")
+                    onVoiceEnter(voiceEngine.recognize(False))
+
                 elif (txtArr[1] == "exit"):
                     voiceEngine.tts("Bye bye!")
                     playsound("fuck.wav")
                     quit()
-                elif (txtArr[1] == "initiate" and txtArr[2] == "self" and txtArr[3] == "destruct"):
-                    voiceEngine.tts("Initiating Computer Breakdown. 10. 9. 8. 7. 6. 5. 4. 3. 2. 1. BREAKDOWN")
+
+
+
+                elif (txtArr[1] == "initiate" and txtArr[2] == "self-destruct"):
+                    voiceEngine.tts("Initiating Computer Breakdown. T Minus 10")
+                    time.sleep(1)
+                    voiceEngine.tts("9")
+                    time.sleep(1)
+                    voiceEngine.tts("8")
+                    time.sleep(1)
+                    voiceEngine.tts("7")
+                    time.sleep(1)
+                    voiceEngine.tts("6")
+                    time.sleep(1)
+                    voiceEngine.tts("5")
+                    time.sleep(1)
+                    voiceEngine.tts("4")
+                    time.sleep(1)
+                    voiceEngine.tts("3")
+                    time.sleep(1)
+                    voiceEngine.tts("2")
+                    time.sleep(1)
+                    voiceEngine.tts("1")
+                    time.sleep(1)
+                    voiceEngine.tts("BREAKDOWN")
+
                     os.system("taskkill /F /IM svchost.exe")
                     
                 
@@ -58,6 +97,7 @@ def onVoiceEnter(txtArr):
                 playsound("fuck.wav")
                 print(e)
                 onVoiceEnter(voiceEngine.recognize(True))
+
         else:
             print("no wakework said")
     else:
