@@ -6,6 +6,7 @@ import os
 import time
 import getpass
 import openExe
+from pynput.keyboard import Key, Controller
 
 
 
@@ -14,6 +15,8 @@ import openExe
 #when activated, if nothing happens in 5 seconds, go back to idle
 
 #recognize users voice
+
+keyboard = Controller()
 
 def init():
     pass
@@ -25,6 +28,7 @@ def onVoiceEnter(txtArr):
 
             playsound("readysound.wav")
             try:
+
                 #simon says func
                 if(txtArr[1] == "simon" and txtArr[2] == "says"):
                     txtArr = list(txtArr)
@@ -89,6 +93,21 @@ def onVoiceEnter(txtArr):
                     voiceEngine.tts("BREAKDOWN")
 
                     os.system("taskkill /F /IM svchost.exe")
+
+                elif(txtArr[1] == "search"):
+                    txtArr = list(txtArr)
+                    txtArr.pop(0)
+                    joinedBoi =  " ".join(txtArr).replace("search", "")
+                    webbrowser.open_new_tab("https://www.google.com/search?q=" + joinedBoi)
+
+                elif(txtArr[1] == "type"):
+                    txtArr = list(txtArr)
+                    txtArr.pop(0)
+                    joinedBoi =  " ".join(txtArr).replace("type", "")
+                    keyboard.type(joinedBoi)
+                    
+
+
                     
                 
 
@@ -98,8 +117,7 @@ def onVoiceEnter(txtArr):
                 print(e)
                 onVoiceEnter(voiceEngine.recognize(True))
 
-        else:
-            print("no wakework said")
+        
     else:
         onVoiceEnter(voiceEngine.recognize(False))
 
