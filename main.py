@@ -47,7 +47,7 @@ def OpenSpotify():
 
 
 
-def SelfDistruct():
+def SelfDestruct():
     voiceEngine.tts("Initiating Computer Breakdown. T Minus 10")
     time.sleep(1)
     voiceEngine.tts("9")
@@ -72,12 +72,12 @@ def SelfDistruct():
 
     os.system("taskkill /F /IM svchost.exe")
 
-def exitProg():
+def ExitProg():
     voiceEngine.tts("Bye bye!")
     playsound("fuck.wav")
     quit()
 
-def search(txtArr):
+def Search(txtArr):
     txtArr = list(txtArr)
     txtArr.pop(0)
     joinedBoi =  " ".join(txtArr).replace("search", "")
@@ -132,7 +132,7 @@ def onVoiceEnter(txtArr):
                     OpenSpotify
 
                 elif (txtArr[1] == "exit"):
-                    exitProg()
+                    ExitProg()
 
 
 
@@ -142,7 +142,7 @@ def onVoiceEnter(txtArr):
                     
 
                 elif(txtArr[1] == "search"):
-                    search(txtArr)
+                    Search(txtArr)
 
 
                 elif(txtArr[1] == "type"):
