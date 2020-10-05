@@ -82,12 +82,16 @@ def Search(txtArr):
     txtArr.pop(0)
     joinedBoi =  " ".join(txtArr).replace("search", "")
     webbrowser.open_new_tab("https://www.google.com/search?q=" + joinedBoi)
+    onVoiceEnter(voiceEngine.recognize(False))
+
 
 def Type(txtArr):
     txtArr = list(txtArr)
     txtArr.pop(0)
     joinedBoi =  " ".join(txtArr).replace("type", "")
     keyboard.type(joinedBoi)
+    onVoiceEnter(voiceEngine.recognize(False))
+
 
 
 
@@ -148,20 +152,19 @@ def onVoiceEnter(txtArr):
                 elif(txtArr[1] == "type"):
                     Type(txtArr)
 
-                    
+                else:
+                	voiceEngine.tts("Sorry, I didn't catch that.")
 
 
                     
                 
 
             except Exception as e:
-                voiceEngine.tts("I have stupid. Something went wrong.")
-                playsound("fuck.wav")
-                print(e)
-                onVoiceEnter(voiceEngine.recognize(True))
+                pass
+
 
         
     else:
         onVoiceEnter(voiceEngine.recognize(False))
 
-onVoiceEnter(voiceEngine.recognize(True))
+onVoiceEnter(voiceEngine.recognize(False))
