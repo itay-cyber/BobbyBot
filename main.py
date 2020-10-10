@@ -6,9 +6,11 @@ import os
 import time
 import getpass
 import openExe
+import server
 from pynput.keyboard import Key, Controller
 
 
+server.run()
 
 
 def SimonSays(txtArr):
@@ -92,9 +94,11 @@ def Type(txtArr):
     keyboard.type(joinedBoi)
     onVoiceEnter(voiceEngine.recognize(False))
 
+def OpenMenu():
+    webbrowser.open_new_tab("http://localhost:7396/")
 
 
-
+OpenMenu()
 
 
 
@@ -151,6 +155,9 @@ def onVoiceEnter(txtArr):
 
                 elif(txtArr[1] == "type"):
                     Type(txtArr)
+
+                elif(txtArr[1] == "open" and txtArr[2] == "menu"):
+                    OpenMenu();
 
                 else:
                 	voiceEngine.tts("Sorry, I didn't catch that.")
