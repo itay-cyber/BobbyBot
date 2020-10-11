@@ -8,7 +8,7 @@ class Serv(BaseHTTPRequestHandler):
         if self.path == '/':
             self.path = '/web/index.html'
         try:
-            print(int("hi 111 lol 22 l"))
+     
             file_to_open = open(self.path[1:]).read()
             self.send_response(200)
         except:

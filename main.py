@@ -6,11 +6,17 @@ import os
 import time
 import getpass
 import openExe
-import server
+import multiprocessing
 from pynput.keyboard import Key, Controller
+import server
 
 
-server.run()
+
+ServerProcess = multiprocessing.Process(target=server.run)
+ServerProcess.start()
+
+
+
 
 
 def SimonSays(txtArr):
