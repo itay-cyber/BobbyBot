@@ -11,9 +11,12 @@ from pynput.keyboard import Key, Controller
 import server
 
 
+if __name__ == '__main__':
+    ServerProcess = multiprocessing.Process(target=server.run)
+    ServerProcess.start()
+    webbrowser.open_new_tab("http://localhost:5500")
+    
 
-ServerProcess = multiprocessing.Process(target=server.run)
-ServerProcess.start()
 
 
 
@@ -101,7 +104,7 @@ def Type(txtArr):
     onVoiceEnter(voiceEngine.recognize(False))
 
 def OpenMenu():
-    webbrowser.open_new_tab("http://localhost:7396/")
+    webbrowser.open_new_tab("http://localhost:5500/")
 
 
 OpenMenu()
@@ -121,7 +124,7 @@ def onVoiceEnter(txtArr):
         if txtArr[0] in voiceEngine.wakewords:
 
 
-            playsound("readysound.wav")
+            playsound("sounds/readysound.wav")
             try:
 
                 #simon says func

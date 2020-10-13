@@ -18,7 +18,7 @@ class Serv(BaseHTTPRequestHandler):
         self.wfile.write(bytes(file_to_open, 'utf-8'))
 
 def run():
-    httpd = HTTPServer(('localhost', 7396), Serv)
+    httpd = HTTPServer(('localhost', 5500), Serv)
     httpd.serve_forever()
 
 
