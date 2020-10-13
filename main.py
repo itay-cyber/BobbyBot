@@ -163,7 +163,7 @@ def onVoiceEnter(txtArr):
                     Type(txtArr)
 
                 elif(txtArr[1] == "open" and txtArr[2] == "menu"):
-                    OpenMenu();
+                    OpenMenu()
 
                 else:
                 	voiceEngine.tts("Sorry, I didn't catch that.")
