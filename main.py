@@ -6,16 +6,15 @@ import os
 import time
 import getpass
 import openExe
-import multiprocessing
 from pynput.keyboard import Key, Controller
-import server
+import myThread
 
 
-if __name__ == '__main__':
-    ServerProcess = multiprocessing.Process(target=server.run)
-    ServerProcess.start()
-    webbrowser.open_new_tab("http://localhost:5500")
+voiceEngine.tts("Starting Bobby Server")
     
+serverThread = myThread.myThread(1,"Localhost5500")
+
+serverThread.start()
 
 
 
@@ -104,7 +103,7 @@ def Type(txtArr):
     onVoiceEnter(voiceEngine.recognize(False))
 
 def OpenMenu():
-    webbrowser.open_new_tab("http://localhost:5500/")
+    webbrowser.open_new_tab("http://localhost:5500/web/index.html")
 
 
 OpenMenu()
@@ -146,7 +145,7 @@ def onVoiceEnter(txtArr):
 
 
                 elif (txtArr[1] == "open" and txtArr[2] == "spotify"):
-                    OpenSpotify
+                    OpenSpotify()
 
                 elif (txtArr[1] == "exit"):
                     ExitProg()
@@ -184,3 +183,6 @@ def onVoiceEnter(txtArr):
         onVoiceEnter(voiceEngine.recognize(False))
 
 onVoiceEnter(voiceEngine.recognize(False))
+
+serverThread.join()
+print("Exiting Servent")
